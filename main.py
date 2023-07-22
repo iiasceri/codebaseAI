@@ -6,7 +6,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import DeepLake
 
 os.environ["ACTIVELOOP_TOKEN"] = "eyJhbGciOiJIUzUxMiIsImlhdCI6MTY4OTI1OTkxNiwiZXhwIjoxNzIwODgyMjU5fQ.eyJpZCI6ImlpYXNjZXJpIn0.Fyryv5DagPWTN86DDXmkFmCibkcmiyJ0B21pN5-CpMRzZZZ4vVEnY-zo7SD6F9B9X4K6KLFWOWGVkLJQvtHXBA"
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 embeddings = OpenAIEmbeddings(disallowed_special=())
 
 # Load all files inside the repository
@@ -35,7 +35,7 @@ username = "iiasceri" # replace with your username from app.activeloop.ai
 db = DeepLake(dataset_path=f"hub://{username}/jwlibrary", embedding_function=embeddings) #dataset would be publicly available
 db.add_documents(texts)
 
-db = DeepLake(dataset_path=f"hub://{username}/motion-canvas", read_only=True, embedding_function=embeddings)
+db = DeepLake(dataset_path=f"hub://{username}/jwlibrary", read_only=True, embedding_function=embeddings)
 retriever = db.as_retriever()
 retriever.search_kwargs['distance_metric'] = 'cos'
 retriever.search_kwargs['fetch_k'] = 100
